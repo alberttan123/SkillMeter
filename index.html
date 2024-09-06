@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMeter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+   <style>
+        * {
+            text-decoration: none;
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color:lightblue;
+        }
+        .logo{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            padding: 0 10px;
+        }
+
+        nav{
+            background-color: white;
+        }
+
+        nav ul{
+            width: 100%;
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        nav li{
+            height: 50px;
+        }
+
+        nav a{
+            height: 100%;
+            padding: 0 30px;
+            text-decoration: none;
+            display: flex;
+            /* justify-content: flex-end; */
+            align-items: center;
+            color: black;
+        }
+
+        nav a:hover{
+            background-color: gray;
+            color: white;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            margin: 5px;
+            height: 45px;
+            width: auto;
+            border-radius: 10px;
+        }
+
+        nav li:first-child{
+            margin-right: auto;
+        }
+
+        .sidebar{
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 250px;
+            z-index: 999;
+            background-color: rgba(255, 255, 255, 0.201);
+            backdrop-filter: blur(10px);
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items:flex-start;
+        }
+
+        .sidebar li{
+            width: 100%;
+        }
+
+        .sidebar a{
+            width: 100%;
+        }
+
+        .menu_button{
+            display: none;
+        }
+
+        @media(max-width: 800px){
+            .mobilehideheader{
+                display: none;
+            }
+
+            .menu_button{
+                display: block;
+            }
+        }
+
+        @media(max-width: 400px){
+            .sidebar{
+                width: 100%;
+            }
+        } 
+          
+        
+
+        /* HOME */
+        .home-banner {
+            width: 100%;
+            height: calc(100vh - 300px);
+            background-image: url("images/banner.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            display: table;
+        }
+        .banner-center {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .home-banner h1 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 900;
+            font-size: 50px; 
+            line-height: 70px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .home-banner h2 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 200;
+            font-size: 15px; 
+            line-height: 40px;
+            color: #fff;
+            text-align: center;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+
+        .container {
+            box-sizing: border-box;
+            width: 100%;
+            min-height: 100px;
+            padding: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .code-box {
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            padding: 10px 20px;
+            backdrop-filter: blur(5px) saturate(100%);
+        }
+        .code-box input {
+            background: transparent;
+            flex: 1;
+            border: 0;
+            outline: none;
+            padding: 24px 20px;
+            font-size: 20px;
+            color: #ffffff;
+            
+        }
+        ::placeholder {
+            color: #ffffff;
+        }
+        .code-box button img {
+            width: 17px;
+        }
+        .code-box button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: #78d9fd;
+            cursor: pointer;
+        }
+
+
+        
+
+        .content {
+            width: 100%;
+            height: calc(100vh - 300px);
+            display: table;
+        }
+        .content-center {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .content h3 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-size: 40px; 
+            line-height: 70px;
+            color: #fff;
+            text-align: center;
+            padding: 50px 30px 5px 30px;
+        }
+        .content p {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-size: 20px; 
+            line-height: 40px;
+            color: #fff;
+            text-align: left;
+            padding: 20px 30px 50px 30px;
+        }
+        .content-intro {
+            background-image: url(images/banner1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .content-origin {
+            background-image: url(images/banner2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            
+        }
+        .content-offer {
+            background-image: url(images/banner3.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        /* FOOTER */
+        footer {
+            width: calc(100% - 60px);
+            padding: 30px 30px;
+            background-color: #919090;
+            height: 30px;
+        }
+        footer ul {
+            width: fit-content;
+            float: left;
+            padding-left: 20px;
+        }
+
+        footer ul li {
+            display: block;
+            list-style: none;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+            font-size: 16px; 
+            color: #fff;
+            line-height: 30px;
+        }
+
+            
+    </style>
+    <script>
+        window.addEventListener("load", function () {
+                var form = document.getElementById("code_box");
+                
+                form.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    var playQuizID = encodeURIComponent(document.getElementById('playQuizID').value);
+                    var params = `QuizID=${playQuizID}`;
+                    let httpc = new XMLHttpRequest();
+                    var url = 'server_php/enterCodePlay.php';
+                    httpc.open("post", url, true);
+                    httpc.onreadystatechange = function() {
+                                if(httpc.readyState == 4 && httpc.status == 200){
+                                    if(httpc.responseText != "valid"){
+                                        window.alert(httpc.responseText);
+                                    }else if(httpc.responseText == "valid"){
+                                        var newUrl = "userview_quiz.php?QuizID=" + playQuizID;
+                                        location.href = newUrl;
+                                    }
+                                }
+                            };
+                    httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    httpc.send(params);
+                });
+            });
+    </script>
+</head>
+<body>
+    <nav>
+        <!-- phone sidebar -->
+        <ul class="sidebar">
+            <li onclick="hidesidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li><a href="index.html">SkillMeter <img src="images/logo1.png" alt="logo" class="logo"></a></li>
+            <li><a href="library(QuizCreated).php">LIBRARY</a></li>
+            <li><a href="create_quiz.php">CREATE</a></li>
+            <li><a href="explore.php">EXPLORE</a></li>
+            <li><a href="profile.php">PROFILE</a></li>
+        </ul>
+        <ul>
+            <!-- header -->
+            <li><a href="index.html"><img src="images/logo1.png" alt="logo" class="logo"> SkillMeter</a></li>
+            <li class="mobilehideheader"><a href="library(QuizCreated).php">LIBRARY</a></li>
+            <li class="mobilehideheader"><a href="create_quiz.php">CREATE</a></li>
+            <li class="mobilehideheader"><a href="explore.php">EXPLORE</a></li>
+            <li class="mobilehideheader"><a href="profile.php">PROFILE</a></li>
+            <li onclick= "showsidebar()" class="menu_button"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function showsidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = "flex"
+        }
+
+        function hidesidebar(){
+            const sidebar = document.querySelector('.sidebar')
+            sidebar.style.display = "none"
+        }   
+    </script>
+    <main>
+        <section class="home-banner">
+            <div class="banner-center">
+                <h1>ENTER THE QUIZ ID</h1>
+                <div class="container">
+                    <form id="code_box" action="#0" method="post" class="code-box">
+                        <input type="text" placeholder="Quiz ID" id="playQuizID">
+                        <button type="submit"><img src="images/arrow.png"></button>
+                    </form>
+                </div>
+                <h2>Measure Your Potential with SkillMeter</h2>
+            </div>
+        </section>
+        <section class="content">
+            <div class="content-intro">
+                <h3>Unlock a world of possibilities</h3>
+                <p>By creating an account on SkillMeter, you gain access to a diverse range of tools and resources designed to support your educational journey. Whether you're a student seeking to improve your skills or an educator looking to engage your students, SkillMeter offers the perfect platform to achieve your goals. Don't miss out on this opportunity to elevate your learning experience – sign up today and start exploring the endless possibilities that SkillMeter has to offer!</p>
+            </div>
+            <div class="content-origin">
+                <h3>The origin of SkillMeter</h3>
+                <p>The simple yet powerful concept of measuring skills, much like using a meter rule to measure the length of an object. By combining the words "skill" and "meter," the title encapsulates the essence of the web application – a tool for quantifying and assessing one's skills in various domains. Just as a meter rule provides precision in measurement, SkillMeter aims to provide accuracy and insight into users' abilities, helping them gauge their strengths and areas for improvement with clarity and efficiency.</p>
+            </div>
+            <div class="content-offer">
+                <h3>What we offer</h3>
+                <p>SkillMeter offers a comprehensive array of features tailored to meet the diverse needs of both students and educators. From facilitating online assessment activities to conducting formative assessments to review users' knowledge and skills, SkillMeter serves as a versatile tool for learning and growth. Its visually engaging interface motivates students to actively participate in their learning journey, while its flexibility allows them to complete assessments at their convenience, anytime and anywhere. Moreover, educators can leverage interactive assessments to engage with their students effectively, fostering a dynamic and collaborative learning environment. With the ability to store users' data and quizzes, SkillMeter enables continuous improvement by enabling users to track their progress and learn from past mistakes. Experience the power of SkillMeter today and revolutionize the way you learn and teach!</p>
+            </div>
+            </section>
+    </main>
+    <footer>
+        <ul>
+            <li>TELEPHONE: 03-51410309</li>
+            <li>EMAIL: skillmeter@gmail.edu.com</li>
+        </ul>
+    </footer>
+</body>
+</html>

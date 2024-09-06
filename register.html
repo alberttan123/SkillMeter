@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        window.addEventListener("load", function () {
+            var form = document.getElementById("form");
+            
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                var new_username = encodeURIComponent(form.elements['username'].value);
+                var new_email = encodeURIComponent(form.elements['email'].value);
+                var new_pword = encodeURIComponent(form.elements['pword'].value);
+                var new_userType = encodeURIComponent(form.elements['user-type'].value);
+                var new_firstName = encodeURIComponent(form.elements['firstName'].value);
+                var new_lastName = encodeURIComponent(form.elements['lastName'].value);
+                var new_phoneNum = encodeURIComponent(form.elements['phoneNum'].value);
+
+                    var params = `username=${new_username}&email=${new_email}&pword=${new_pword}&userType=${new_userType}&firstName=${new_firstName}&lastName=${new_lastName}&phoneNum=${new_phoneNum}`;
+                    let httpc = new XMLHttpRequest();
+                    var url = 'server_php/register.php';
+                    httpc.open("post", url, true);
+                    httpc.onreadystatechange = function() {
+                                if(httpc.readyState == 4 && httpc.status == 200){
+                                    if(httpc.responseText != "valid"){
+                                        window.alert(httpc.responseText);
+                                    }else if(httpc.responseText == "valid"){
+                                        window.alert("Registration successful!")
+                                        location.href = "login.php";
+                                    }
+                                }
+                            };
+                    httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    httpc.send(params);
+            });
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            color: #fff;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url("images/banner1.png");
+        }
+        .wrapper {
+            width: 80%;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            color: white;
+            border-radius: 10px;
+            padding: 30px 50px;
+            margin: 50px;
+        }
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+        .input-box {
+            height: 50px;
+            margin: 20px 0;
+            width: 100%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            border-radius: 50px;
+            padding: 10px 10px;
+            backdrop-filter: blur(5px) saturate(100%);
+        }
+        
+        
+        /* USER TYPE */
+        .input-box-user {
+            box-sizing: border-box;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px) saturate(100%);
+            align-items: center;
+            border-radius: 10px;
+        }
+        .input-box-user html, body {
+            display: grid;
+            height: 100%;
+        }
+        .title {
+            columns: #fff;
+            line-height: 60px;
+            text-align: center;
+            font-size: 25px;
+            font-weight: 500;
+        }
+        .box {
+            padding: 20px 40px;
+            backdrop-filter: blur(3px) saturate(100%);
+        }
+        .box label {
+            display: flex;
+            height: 40px;
+            width: 100%;
+            align-tracks: center;
+            border: 1px solid lightgrey;
+            border-radius: 50px;
+            margin: 10px 0;
+            padding-left: 20px;
+            cursor: default;
+            transition: all 0.3s ease;
+        }
+        .box label .text {
+            color: #333;
+            font-size: 16px;
+            font-weight: 400;
+            padding-top: 10px;
+            transition: color 0.3s ease;
+        }
+        #student:checked ~ .student, 
+        #teacher:checked ~ .teacher  {
+            background-color: #333;
+            border-color: #333;
+        }
+        #student:checked ~ .student .text, 
+        #teacher:checked ~ .teacher .text{
+            color: #fff;
+        }
+        .box input[type="radio"] {
+            display: none;
+        } 
+
+
+        .input-picture {
+            height: 70px;
+            margin: 30px 0;
+            width: 100%;
+            max-width: 700px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 30px;
+            padding: 10px 10px;
+            backdrop-filter: blur(5px) saturate(100%);
+        }
+        .input-box input{
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rbga(255, 255, 255, 0.2);
+            border-radius: 40px;
+            font-size: 16px;
+            padding: 20px 45px 20px 20px;
+        }
+        .input-box input::placeholder {
+            color: #fff;
+        }
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+        .wrapper .btn {
+            width: 315px;
+            height: 45px;
+            background-color: #fff;
+            border: none;
+            outline: none;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0,0.1);
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input{
+            text-align: center
+        }
+
+    </style>
+</head>
+<body>
+        <div class="wrapper">
+            <form id="form" action="#0" method="POST">
+                <h1>Register</h1>
+                <div class="input-box">
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" id="pword" placeholder="Password" required>
+                </div>
+    
+    
+                <div class="input-box-user">
+                    <div class="title">Select your role</div>
+                    <div class="box">
+                        <input type="radio" id="student" name="user-type" value="0" required>
+                        <input type="radio" id="teacher" name="user-type" value="1">
+                        <label for="student" class="student">
+                            <div class="text">Student</div>
+                        </label>
+                        <label for="teacher" class="teacher">
+                            <div class="text">Teacher</div>
+                        </label>
+                    </div>
+                    
+                </div>
+    
+    
+                <div class="input-box">
+                    <input type="text" id="firstName" placeholder="First Name" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" id="lastName" placeholder="Last Name" required>
+                </div>
+                <div class="input-box">
+                    <input type="tel" id="phoneNum" pattern="^(\+?6?01)[02-46-9]-*[0-9]{7}$|^(\+?6?01)[1]-*[0-9]{8}$" placeholder="Phone Number" required>
+                </div>
+    
+                <input type="submit" class="btn">
+                <br><br>
+                <p style="text-align: center;">Already have an account? <a href="login.php"><b>Back to Login</b></a></p>
+    
+            </form>
+        </div>
+    
+</body>
+</html>
